@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NotificationApiController {
     private final NotificationService notificationService;
+
     @PostMapping("/post/notifPost")
     public void postNotificationLists(@RequestBody NotificationDTO notificationDTO) {
         notificationService.save(notificationDTO);
