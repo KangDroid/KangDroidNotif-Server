@@ -1,4 +1,4 @@
-package com.kangdroid.notifserver.main;
+package com.kangdroid.notifserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
