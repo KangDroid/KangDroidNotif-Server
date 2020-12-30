@@ -19,9 +19,9 @@ jobs:
       # Run Build operation
       - name: Compiling Code
         run: |
-          ./gradlew clean build
+          ./gradlew clean build --debug
 
       # Run Test operation
       - name: Testing Code
         run: |
-          ./gradlew clean test
+          ./gradlew clean test --debug
