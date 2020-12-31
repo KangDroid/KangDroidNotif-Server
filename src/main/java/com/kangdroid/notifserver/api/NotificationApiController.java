@@ -17,7 +17,7 @@ public class NotificationApiController {
         return notificationDTO;
     }
 
-    @GetMapping("/post/notifGet/{id}")
+    @GetMapping("/get/notifGet/{id}")
     public NotificationResponseDTO getNotificationById(@PathVariable Long id) {
         return notificationService.findById(id);
     }

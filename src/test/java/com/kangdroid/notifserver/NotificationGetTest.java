@@ -78,7 +78,7 @@ public class NotificationGetTest {
         assertThat(notificationList.size()).isEqualTo(1);
 
         // Now, we get data from server.
-        String getUrl = "http://localhost:" + this.port + "/post/notifGet/{id}";
+        String getUrl = "http://localhost:" + this.port + "/get/notifGet/{id}";
         NotificationResponseDTO notifObject = testRestTemplate.getForObject(getUrl, NotificationResponseDTO.class, notificationList.get(0).getId());
 
         // Assert
