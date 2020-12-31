@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 public class NotificationResponseDTO {
+    private final String title;
+    private final String content;
+    private final String genDate;
     private Long id;
-    private String title;
-    private String content;
-    private String genDate;
 
     public NotificationResponseDTO(Notification notification) {
         this.id = notification.getId();

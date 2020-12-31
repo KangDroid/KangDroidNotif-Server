@@ -3,7 +3,6 @@ package com.kangdroid.notifserver;
 import com.kangdroid.notifserver.domain.Notification;
 import com.kangdroid.notifserver.domain.NotificationRepository;
 import com.kangdroid.notifserver.dto.NotificationDTO;
-import com.kangdroid.notifserver.dto.NotificationResponseDTO;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
