@@ -1,6 +1,5 @@
 package com.kangdroid.notifserver;
 
-import com.kangdroid.notifserver.domain.Notification;
 import com.kangdroid.notifserver.domain.NotificationRepository;
 import com.kangdroid.notifserver.dto.NotificationDTO;
 import com.kangdroid.notifserver.dto.NotificationResponseDTO;
@@ -19,13 +18,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class NotificationPostTest {
+public class NotificationGetTest {
     @LocalServerPort
     private int port;
 
@@ -41,8 +39,8 @@ public class NotificationPostTest {
     }
 
     @Test
-    public void testPostNotification() throws Exception {
-        // Let - Default Data
+    public void testGetNotification() throws Exception {
+        // Let - Default
         String title = "KakaoTalk";
         String content = "Hello, World!";
         Date todayDate = Calendar.getInstance().getTime();
@@ -54,21 +52,22 @@ public class NotificationPostTest {
                 .reqGenDate(curDate)
                 .build();
 
+        // Post Should be tested with "testPostNotification()", so in here, we post it.
         // Let - URL
         String url = "http://localhost:" + this.port + "/post/notifPost";
-
-        // When
         ResponseEntity<Long> responseEntity = testRestTemplate.postForEntity(url, notificationDTO, Long.class);
 
-        // Check - HTTP Code
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK); // OK Sign Check
+        // Check for HTTP Code, since there might be 404 error somehow
+        // But Skip checking whether it is correctly posted in server.
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        // Check - Whether POST worked correctly!
-        List<Notification> notificationList = this.notificationRepository.findAll();
-        Notification notificationTesting = notificationList.get(0);
+        // Now, we get data from server.
+        String getUrl = "http://localhost:" + this.port + "/post/notifGet/{id}";
+        NotificationResponseDTO notifObject = testRestTemplate.getForObject(getUrl, NotificationResponseDTO.class, 1);
 
-        assertThat(notificationTesting.getTitle()).isEqualTo(title);
-        assertThat(notificationTesting.getContent()).isEqualTo(content);
-        assertThat(notificationTesting.getGenDate()).isEqualTo(curDate);
+        // Assert
+        assertThat(notifObject.getContent()).isEqualTo(content);
+        assertThat(notifObject.getTitle()).isEqualTo(title);
+        assertThat(notifObject.getGenDate()).isEqualTo(curDate);
     }
 }
