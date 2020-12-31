@@ -12,8 +12,9 @@ public class NotificationApiController {
     private final NotificationService notificationService;
 
     @PostMapping("/post/notifPost")
-    public void postNotificationLists(@RequestBody NotificationDTO notificationDTO) {
+    public NotificationDTO postNotificationLists(@RequestBody NotificationDTO notificationDTO) {
         notificationService.save(notificationDTO);
+        return notificationDTO;
     }
 
     @GetMapping("/post/notifGet/{id}")
