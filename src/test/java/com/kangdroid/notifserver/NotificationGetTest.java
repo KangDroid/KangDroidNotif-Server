@@ -1,5 +1,6 @@
 package com.kangdroid.notifserver;
 
+import com.kangdroid.notifserver.domain.Notification;
 import com.kangdroid.notifserver.domain.NotificationRepository;
 import com.kangdroid.notifserver.dto.NotificationDTO;
 import com.kangdroid.notifserver.dto.NotificationResponseDTO;
@@ -18,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -61,9 +63,20 @@ public class NotificationGetTest {
         // But Skip checking whether it is correctly posted in server.
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 
+        /**
+         * Since on Linux systems, posting above data would result ID != 1,
+         * but on macOS systems, posting above data would result ID == 1 though.
+         * Therefore, dynamically check ID of its database.
+         *
+         * It is pretty much sure that notificationRepository does contains only one of data,
+         * so check ID dynamically, and assert if there is more than one dbs on notificationRepository.
+         */
+        List<Notification> notificationList = notificationRepository.findAll();
+        assertThat(notificationList.size()).isEqualTo(1);
+
         // Now, we get data from server.
         String getUrl = "http://localhost:" + this.port + "/post/notifGet/{id}";
-        NotificationResponseDTO notifObject = testRestTemplate.getForObject(getUrl, NotificationResponseDTO.class, 1);
+        NotificationResponseDTO notifObject = testRestTemplate.getForObject(getUrl, NotificationResponseDTO.class, notificationList.get(0).getId());
 
         // Assert
         assertThat(notifObject.getContent()).isEqualTo(content);
