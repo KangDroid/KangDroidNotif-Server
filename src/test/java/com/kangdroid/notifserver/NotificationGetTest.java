@@ -55,7 +55,7 @@ public class NotificationGetTest {
         // Post Should be tested with "testPostNotification()", so in here, we post it.
         // Let - URL
         String url = "http://localhost:" + this.port + "/post/notifPost";
-        ResponseEntity<Long> responseEntity = testRestTemplate.postForEntity(url, notificationDTO, Long.class);
+        ResponseEntity<NotificationDTO> responseEntity = testRestTemplate.postForEntity(url, notificationDTO, NotificationDTO.class);
 
         // Check for HTTP Code, since there might be 404 error somehow
         // But Skip checking whether it is correctly posted in server.

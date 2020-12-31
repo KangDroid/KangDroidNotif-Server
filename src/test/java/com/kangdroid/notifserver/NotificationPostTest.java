@@ -58,7 +58,7 @@ public class NotificationPostTest {
         String url = "http://localhost:" + this.port + "/post/notifPost";
 
         // When
-        ResponseEntity<Long> responseEntity = testRestTemplate.postForEntity(url, notificationDTO, Long.class);
+        ResponseEntity<NotificationDTO> responseEntity = testRestTemplate.postForEntity(url, notificationDTO, NotificationDTO.class);
 
         // Check - HTTP Code
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK); // OK Sign Check
