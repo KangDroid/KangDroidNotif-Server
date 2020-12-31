@@ -21,4 +21,9 @@ public class NotificationApiController {
     public NotificationResponseDTO getNotificationById(@PathVariable Long id) {
         return notificationService.findById(id);
     }
+
+    @GetMapping("/get/NotifCount")
+    public String getNotifCount() {
+        return notificationService.getNotificationCount();
+    }
 }

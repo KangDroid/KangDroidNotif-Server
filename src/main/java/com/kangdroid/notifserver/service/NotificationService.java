@@ -25,4 +25,8 @@ public class NotificationService {
 
         return new NotificationResponseDTO(notification);
     }
+
+    public String getNotificationCount() {
+        return String.valueOf(notificationRepository.findAll().size());
+    }
 }

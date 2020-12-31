@@ -22,6 +22,9 @@ import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -82,5 +85,18 @@ public class NotificationGetTest {
         assertThat(notifObject.getContent()).isEqualTo(content);
         assertThat(notifObject.getTitle()).isEqualTo(title);
         assertThat(notifObject.getGenDate()).isEqualTo(curDate);
+    }
+
+    @Test
+    public void test_notif_count() throws Exception {
+        // Delete All Repos first.
+        this.notificationRepository.deleteAll();
+
+        // When
+        String url = "http://localhost:" + this.port + "/get/NotifCount";
+        String reponseString = testRestTemplate.getForObject(url, String.class);
+
+        // Assert
+        assertThat(reponseString).isEqualTo("0");
     }
 }
