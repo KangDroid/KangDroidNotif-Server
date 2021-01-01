@@ -16,6 +16,10 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Notification Request Package
+    @Column(length = 500, nullable = false)
+    private String reqPackage;
+
     // Notification Name[Title]
     @Column(length = 500, nullable = false)
     private String title;
@@ -30,7 +34,8 @@ public class Notification {
 
     // Constructor[With lombok - builder]
     @Builder
-    public Notification(String title, String content, String genDate) {
+    public Notification(String reqPackage, String title, String content, String genDate) {
+        this.reqPackage = reqPackage;
         this.title = title;
         this.content = content;
         this.genDate = genDate;

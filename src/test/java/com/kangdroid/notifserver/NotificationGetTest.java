@@ -45,10 +45,12 @@ public class NotificationGetTest {
         // Let - Default
         String title = "KakaoTalk";
         String content = "Hello, World!";
+        String reqPackage = "com.kangdroid.test";
         Date todayDate = Calendar.getInstance().getTime();
         DateFormat formatDate = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String curDate = formatDate.format(todayDate);
         NotificationDTO notificationDTO = NotificationDTO.builder()
+                .reqPackage(reqPackage)
                 .reqTitle(title)
                 .reqContent(content)
                 .reqGenDate(curDate)
@@ -82,6 +84,7 @@ public class NotificationGetTest {
         assertThat(notifObject.getContent()).isEqualTo(content);
         assertThat(notifObject.getTitle()).isEqualTo(title);
         assertThat(notifObject.getGenDate()).isEqualTo(curDate);
+        assertThat(notifObject.getReqPackage()).isEqualTo(reqPackage);
     }
 
     @Test

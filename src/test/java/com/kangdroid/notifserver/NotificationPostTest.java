@@ -42,12 +42,14 @@ public class NotificationPostTest {
     @Test
     public void testPostNotification() throws Exception {
         // Let - Default Data
+        String reqPackage = "com.kangdroid.test";
         String title = "KakaoTalk";
         String content = "Hello, World!";
         Date todayDate = Calendar.getInstance().getTime();
         DateFormat formatDate = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String curDate = formatDate.format(todayDate);
         NotificationDTO notificationDTO = NotificationDTO.builder()
+                .reqPackage(reqPackage)
                 .reqTitle(title)
                 .reqContent(content)
                 .reqGenDate(curDate)
@@ -69,5 +71,6 @@ public class NotificationPostTest {
         assertThat(notificationTesting.getTitle()).isEqualTo(title);
         assertThat(notificationTesting.getContent()).isEqualTo(content);
         assertThat(notificationTesting.getGenDate()).isEqualTo(curDate);
+        assertThat(notificationTesting.getReqPackage()).isEqualTo(reqPackage);
     }
 }

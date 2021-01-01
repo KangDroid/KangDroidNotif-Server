@@ -13,12 +13,14 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class NotificationDTO {
+    private String reqPackage;
     private String title;
     private String content;
     private String genDate;
 
     @Builder
-    public NotificationDTO(String reqTitle, String reqContent, String reqGenDate) {
+    public NotificationDTO(String reqPackage, String reqTitle, String reqContent, String reqGenDate) {
+        this.reqPackage = reqPackage;
         this.title = reqTitle;
         this.content = reqContent;
         this.genDate = reqGenDate;
@@ -26,6 +28,7 @@ public class NotificationDTO {
 
     public Notification toEntity() {
         return Notification.builder()
+                .reqPackage(this.reqPackage)
                 .title(this.title)
                 .content(this.content)
                 .genDate(this.genDate)
