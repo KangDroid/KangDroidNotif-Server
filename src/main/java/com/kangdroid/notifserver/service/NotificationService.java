@@ -4,6 +4,7 @@ import com.kangdroid.notifserver.domain.Notification;
 import com.kangdroid.notifserver.domain.NotificationRepository;
 import com.kangdroid.notifserver.dto.NotificationDTO;
 import com.kangdroid.notifserver.dto.NotificationResponseDTO;
+import com.kangdroid.notifserver.notify.HostNotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,11 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class NotificationService {
     private final NotificationRepository notificationRepository;
+    private HostNotificationService hostNotificationService = new HostNotificationService();
 
     @Transactional
     public Long save(NotificationDTO notificationDTO) {
+        hostNotificationService.showNotificationOnHost(notificationDTO);
         return this.notificationRepository.save(notificationDTO.toEntity()).getId();
     }
 
