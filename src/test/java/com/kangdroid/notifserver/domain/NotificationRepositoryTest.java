@@ -34,7 +34,7 @@ public class NotificationRepositoryTest {
         String content = "Hello, World!";
         String reqPackage = "com.kangdroid.test";
         Date todayDate = Calendar.getInstance().getTime();
-        DateFormat formatDate = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String curDate = formatDate.format(todayDate);
         // Let - Create simple data
         notificationRepository.save(Notification.builder()

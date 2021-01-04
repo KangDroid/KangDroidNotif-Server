@@ -47,7 +47,7 @@ public class NotificationGetTest {
         String content = "Hello, World!";
         String reqPackage = "com.kangdroid.test";
         Date todayDate = Calendar.getInstance().getTime();
-        DateFormat formatDate = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String curDate = formatDate.format(todayDate);
         NotificationDTO notificationDTO = NotificationDTO.builder()
                 .reqPackage(reqPackage)
