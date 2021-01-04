@@ -11,6 +11,13 @@ public class HostNotificationService {
      */
     public void showNotificationOnHost(NotificationDTO notificationDTO) {
         if (System.getProperty("os.name").toLowerCase().equals("mac os x")) {
+
+            // Skip posting notification if title/contents are both null, but for debug purpose, still
+            // save it to db.
+            if (notificationDTO.getTitle().equals("null") && notificationDTO.getContent().equals("null")) {
+                return;
+            }
+
             final String commandArgs = "display notification \"" + notificationDTO.getContent() + "\"" + " with title \"" + notificationDTO.getTitle() + "\"";
             ProcessBuilder hostBuilder = new ProcessBuilder("osascript", "-e", commandArgs);
             try {
