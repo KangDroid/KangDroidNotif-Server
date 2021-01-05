@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +29,17 @@ public class NotificationService {
                 .orElseThrow(() -> new IllegalArgumentException("No Such ID: " + id));
 
         return new NotificationResponseDTO(notification);
+    }
+
+    public List<NotificationResponseDTO> findAll() {
+        List<Notification> notificationList = notificationRepository.findAll();
+        List<NotificationResponseDTO> responseDTOList = new ArrayList<>();
+
+        for (Notification notification : notificationList) {
+            responseDTOList.add(new NotificationResponseDTO(notification));
+        }
+
+        return responseDTOList;
     }
 
     public String getNotificationCount() {

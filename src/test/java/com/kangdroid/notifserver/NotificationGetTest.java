@@ -99,4 +99,44 @@ public class NotificationGetTest {
         // Assert
         assertThat(reponseString).isEqualTo("0");
     }
+
+    @Test
+    public void test_getall_notification() throws Exception {
+        // Delete all repos first.
+        this.notificationRepository.deleteAll();
+
+        // when
+        String getUrl = "http://localhost:" + this.port + "/get/notifGet/all";
+        String postUrl = "http://localhost:" + this.port + "/post/notifPost";
+
+        // Let - Default
+        String title = "KakaoTalk";
+        String content = "Hello, World!";
+        String reqPackage = "com.kangdroid.test";
+        Date todayDate = Calendar.getInstance().getTime();
+        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String curDate = formatDate.format(todayDate);
+        NotificationDTO notificationDTO = NotificationDTO.builder()
+                .reqPackage(reqPackage)
+                .reqTitle(title)
+                .reqContent(content)
+                .reqGenDate(curDate)
+                .build();
+
+        // Post Should be tested with "testPostNotification()", so in here, we post it.
+        ResponseEntity<NotificationDTO> responseEntity = testRestTemplate.postForEntity(postUrl, notificationDTO, NotificationDTO.class);
+
+        // Check for HTTP Code, since there might be 404 error somehow
+        // But Skip checking whether it is correctly posted in server.
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        // Now, check for GETALL
+        NotificationResponseDTO[] responseArray = testRestTemplate.getForObject(getUrl, NotificationResponseDTO[].class);
+        assertThat(responseArray.length).isEqualTo(1);
+
+        assertThat(responseArray[0].getContent()).isEqualTo(content);
+        assertThat(responseArray[0].getTitle()).isEqualTo(title);
+        assertThat(responseArray[0].getGenDate()).isEqualTo(curDate);
+        assertThat(responseArray[0].getReqPackage()).isEqualTo(reqPackage);
+    }
 }

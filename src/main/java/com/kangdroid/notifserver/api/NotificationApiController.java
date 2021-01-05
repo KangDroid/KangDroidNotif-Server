@@ -6,6 +6,8 @@ import com.kangdroid.notifserver.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 public class NotificationApiController {
@@ -20,6 +22,11 @@ public class NotificationApiController {
     @GetMapping("/get/notifGet/{id}")
     public NotificationResponseDTO getNotificationById(@PathVariable Long id) {
         return notificationService.findById(id);
+    }
+
+    @GetMapping("/get/notifGet/all")
+    public List<NotificationResponseDTO> getAllNotificationData() {
+        return notificationService.findAll();
     }
 
     @GetMapping("/get/NotifCount")
