@@ -14,7 +14,7 @@ public class HostNotificationService {
 
             // Skip posting notification if title/contents are both null, but for debug purpose, still
             // save it to db.
-            if (notificationDTO.getTitle().equals("null") && notificationDTO.getContent().equals("null")) {
+            if (notificationDTO.getTitle().equals("null") || notificationDTO.getContent().equals("null")) {
                 return;
             }
 
