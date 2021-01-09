@@ -70,11 +70,7 @@ public class NotificationPostTest {
     public void testBaseTimeEntity() {
         // Let
         LocalDateTime now = LocalDateTime.of(2019, 6, 4, 0, 0, 0);
-        notificationRepository.save(Notification.builder()
-        .title("KakaoTalk")
-        .content("Hello, World!")
-        .reqPackage("com.test")
-        .build());
+        notificationRepository.save(new Notification("KakaoTalk", "Hello, World!", "com.test"));
 
         // When
         List<Notification> notificationList = notificationRepository.findAll();

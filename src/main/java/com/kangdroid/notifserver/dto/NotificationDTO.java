@@ -25,10 +25,6 @@ public class NotificationDTO {
     }
 
     public Notification toEntity() {
-        return Notification.builder()
-                .reqPackage(this.reqPackage)
-                .title(this.title)
-                .content(this.content)
-                .build();
+        return new Notification(this.reqPackage, this.title, this.content);
     }
 }

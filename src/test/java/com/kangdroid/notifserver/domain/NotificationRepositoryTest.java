@@ -30,12 +30,7 @@ public class NotificationRepositoryTest {
         String content = "Hello, World!";
         String reqPackage = "com.kangdroid.test";
         // Let - Create simple data
-        notificationRepository.save(Notification.builder()
-                .reqPackage(reqPackage)
-                .title(notifTitle)
-                .content(content)
-                .build()
-        );
+        notificationRepository.save(new Notification(reqPackage, notifTitle, content));
 
         // When
         List<Notification> notificationList = notificationRepository.findAll();
