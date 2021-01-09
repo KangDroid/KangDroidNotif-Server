@@ -14,17 +14,17 @@ class Notification() : BaseTimeEntity() {
     // Identifier
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+    var id: Long = 0
 
     // Notification Request Package
     @Column(length = 500, nullable = false)
-    var reqPackage: String? = null
+    var reqPackage: String = ""
 
     // Notification Name[Title]
     @Column(length = 500, nullable = false)
-    var title: String? = null
+    var title: String = ""
 
     // Notification Content
     @Column(nullable = false)
-    var content: String? = null
+    var content: String = ""
 }
