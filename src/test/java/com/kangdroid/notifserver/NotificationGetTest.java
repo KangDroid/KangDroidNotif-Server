@@ -15,10 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,14 +42,10 @@ public class NotificationGetTest {
         String title = "KakaoTalk";
         String content = "Hello, World!";
         String reqPackage = "com.kangdroid.test";
-        Date todayDate = Calendar.getInstance().getTime();
-        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String curDate = formatDate.format(todayDate);
         NotificationDTO notificationDTO = NotificationDTO.builder()
                 .reqPackage(reqPackage)
                 .reqTitle(title)
                 .reqContent(content)
-                .reqGenDate(curDate)
                 .build();
 
         // Post Should be tested with "testPostNotification()", so in here, we post it.
@@ -83,7 +75,6 @@ public class NotificationGetTest {
         // Assert
         assertThat(notifObject.getContent()).isEqualTo(content);
         assertThat(notifObject.getTitle()).isEqualTo(title);
-        assertThat(notifObject.getGenDate()).isEqualTo(curDate);
         assertThat(notifObject.getReqPackage()).isEqualTo(reqPackage);
     }
 
@@ -113,14 +104,10 @@ public class NotificationGetTest {
         String title = "KakaoTalk";
         String content = "Hello, World!";
         String reqPackage = "com.kangdroid.test";
-        Date todayDate = Calendar.getInstance().getTime();
-        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String curDate = formatDate.format(todayDate);
         NotificationDTO notificationDTO = NotificationDTO.builder()
                 .reqPackage(reqPackage)
                 .reqTitle(title)
                 .reqContent(content)
-                .reqGenDate(curDate)
                 .build();
 
         // Post Should be tested with "testPostNotification()", so in here, we post it.
@@ -136,7 +123,6 @@ public class NotificationGetTest {
 
         assertThat(responseArray[0].getContent()).isEqualTo(content);
         assertThat(responseArray[0].getTitle()).isEqualTo(title);
-        assertThat(responseArray[0].getGenDate()).isEqualTo(curDate);
         assertThat(responseArray[0].getReqPackage()).isEqualTo(reqPackage);
     }
 }

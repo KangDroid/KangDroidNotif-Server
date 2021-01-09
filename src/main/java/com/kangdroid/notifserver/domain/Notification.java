@@ -28,16 +28,11 @@ public class Notification extends BaseTimeEntity {
     @Column(nullable = false)
     private String content;
 
-    // Notification Date[When generated?]
-    @Column(nullable = false)
-    private String genDate;
-
     // Constructor[With lombok - builder]
     @Builder
-    public Notification(String reqPackage, String title, String content, String genDate) {
+    public Notification(String reqPackage, String title, String content) {
         this.reqPackage = reqPackage;
         this.title = title;
         this.content = content;
-        this.genDate = genDate;
     }
 }

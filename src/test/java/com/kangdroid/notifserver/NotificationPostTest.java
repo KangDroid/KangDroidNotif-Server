@@ -14,11 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,14 +42,10 @@ public class NotificationPostTest {
         String reqPackage = "com.kangdroid.test";
         String title = "KakaoTalk";
         String content = "Hello, World!";
-        Date todayDate = Calendar.getInstance().getTime();
-        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String curDate = formatDate.format(todayDate);
         NotificationDTO notificationDTO = NotificationDTO.builder()
                 .reqPackage(reqPackage)
                 .reqTitle(title)
                 .reqContent(content)
-                .reqGenDate(curDate)
                 .build();
 
         // Let - URL
@@ -71,7 +63,6 @@ public class NotificationPostTest {
 
         assertThat(notificationTesting.getTitle()).isEqualTo(title);
         assertThat(notificationTesting.getContent()).isEqualTo(content);
-        assertThat(notificationTesting.getGenDate()).isEqualTo(curDate);
         assertThat(notificationTesting.getReqPackage()).isEqualTo(reqPackage);
     }
 
@@ -83,7 +74,6 @@ public class NotificationPostTest {
         .title("KakaoTalk")
         .content("Hello, World!")
         .reqPackage("com.test")
-        .genDate("Test")
         .build());
 
         // When

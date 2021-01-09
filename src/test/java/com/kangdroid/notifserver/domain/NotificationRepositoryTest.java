@@ -7,10 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,15 +29,11 @@ public class NotificationRepositoryTest {
         String notifTitle = "KakaoTalk";
         String content = "Hello, World!";
         String reqPackage = "com.kangdroid.test";
-        Date todayDate = Calendar.getInstance().getTime();
-        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String curDate = formatDate.format(todayDate);
         // Let - Create simple data
         notificationRepository.save(Notification.builder()
                 .reqPackage(reqPackage)
                 .title(notifTitle)
                 .content(content)
-                .genDate(curDate)
                 .build()
         );
 
@@ -52,7 +44,6 @@ public class NotificationRepositoryTest {
         Notification notificationResult = notificationList.get(0);
         assertThat(notificationResult.getContent()).isEqualTo(content);
         assertThat(notificationResult.getTitle()).isEqualTo(notifTitle);
-        assertThat(notificationResult.getGenDate()).isEqualTo(curDate);
         assertThat(notificationResult.getReqPackage()).isEqualTo(reqPackage);
     }
 }
