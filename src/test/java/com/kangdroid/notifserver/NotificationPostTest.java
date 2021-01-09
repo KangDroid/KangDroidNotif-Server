@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -72,5 +73,26 @@ public class NotificationPostTest {
         assertThat(notificationTesting.getContent()).isEqualTo(content);
         assertThat(notificationTesting.getGenDate()).isEqualTo(curDate);
         assertThat(notificationTesting.getReqPackage()).isEqualTo(reqPackage);
+    }
+
+    @Test
+    public void testBaseTimeEntity() {
+        // Let
+        LocalDateTime now = LocalDateTime.of(2019, 6, 4, 0, 0, 0);
+        notificationRepository.save(Notification.builder()
+        .title("KakaoTalk")
+        .content("Hello, World!")
+        .reqPackage("com.test")
+        .genDate("Test")
+        .build());
+
+        // When
+        List<Notification> notificationList = notificationRepository.findAll();
+
+        // Then
+        Notification notification = notificationList.get(0);
+
+        assertThat(notification.getCreatedDate()).isAfter(now);
+        assertThat(notification.getModifiedDate()).isAfter(now);
     }
 }

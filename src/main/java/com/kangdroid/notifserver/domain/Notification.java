@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter // Implement getter automatically
 @NoArgsConstructor // Without automatic argument constructor
 @Entity // This is Entity!
-public class Notification {
+public class Notification extends BaseTimeEntity {
 
     // Identifier
     @Id
