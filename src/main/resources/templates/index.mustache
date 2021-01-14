@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>SpringBoot Web Service</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+{{>layout/header}}
+
+<h1>Notification Lists</h1>
+<div class="col-md-12">
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>ID</th>
+            <th>Time</th>
+            <th>Package Name</th>
+            <th>Title</th>
+            <th>content</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#notifications}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{createdDate}}</td>
+                <td>{{reqPackage}}</a></td>
+                <td>{{title}}</td>
+                <td>{{content}}</td>
+            </tr>
+        {{/notifications}}
+        </tbody>
+    </table>
+</div>
+
+{{>layout/footer}}
+</body>
+</html>

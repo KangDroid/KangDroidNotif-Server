@@ -3,14 +3,16 @@ package com.kangdroid.notifserver.service;
 import com.kangdroid.notifserver.domain.Notification;
 import com.kangdroid.notifserver.domain.NotificationRepository;
 import com.kangdroid.notifserver.dto.NotificationDTO;
+import com.kangdroid.notifserver.dto.NotificationListResponseDto;
 import com.kangdroid.notifserver.dto.NotificationResponseDTO;
 import com.kangdroid.notifserver.notify.HostNotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +42,13 @@ public class NotificationService {
         }
 
         return responseDTOList;
+    }
+
+    @Transactional(readOnly = true)
+    public List<NotificationListResponseDto> findAllDesc() {
+        return notificationRepository.findAllDesc().stream()
+                .map(NotificationListResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     public String getNotificationCount() {

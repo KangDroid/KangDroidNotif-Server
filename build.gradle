@@ -46,6 +46,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-mustache')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile('org.springframework.boot:spring-boot-starter-mustache')
 }
 compileKotlin {
     kotlinOptions {
