@@ -67,4 +67,8 @@ public class NotificationService {
 
         return isSucceed;
     }
+
+    public void deleteNotificationAll() {
+        notificationRepository.deleteAll();
+    }
 }

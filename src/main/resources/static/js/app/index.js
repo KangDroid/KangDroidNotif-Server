@@ -19,6 +19,18 @@ const main = {
                 alert(JSON.stringify(error));
             });
         });
+        $('#clear-all').on('click', function() {
+            $.ajax({
+                type: 'DELETE',
+                url: '/delete/notifDelete/all',
+                contentType: 'application/json; charset-utf-8'
+            }).done(function() {
+                alert('Removed All Notification!');
+                window.location.href = '/'
+            }).fail(function(error) {
+                alert(JSON.stringify(error));
+            })
+        })
     }
 };
 

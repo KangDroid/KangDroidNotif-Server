@@ -38,4 +38,9 @@ public class NotificationApiController {
     public boolean deleteNotification(@PathVariable Long id) {
         return notificationService.deleteNotification(id);
     }
+
+    @DeleteMapping("/delete/notifDelete/all")
+    public void deleteNotificationAll() {
+        notificationService.deleteNotificationAll();
+    }
 }
