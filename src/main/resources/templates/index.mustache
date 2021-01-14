@@ -1,46 +1,86 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>SpringBoot Web Service</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
+
 {{>layout/header}}
 
-<h1>Notification Lists</h1>
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-6">
-            <button type="button" class="btn btn-primary" id="clear-all">Remove All</button>
+<body style="background: #ffffff;height: 637px;color: var(--gray);">
+<div style="height: 100%;width: 50%;margin-left: 25%;">
+    <div class="card" style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;border-bottom-left-radius: 8px;width: 70%;margin-top: 2%;margin-right: 0%;margin-bottom: 0%;margin-left: 15%;border-top-left-radius: 8px;box-shadow: 0px 0px 8px 3px var(--gray);">
+        <div class="card-body">
+            <h4 class="card-title" style="color: var(--white);background: var(--blue);border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;font-size: 26px;">Notification Lists</h4>
+            <h6 class="text-muted card-subtitle mb-2"></h6>
+            <p class="card-text">By, KangDroid.</p><a class="card-link-all" role="button">Dismiss All Notifications</a>
         </div>
     </div>
 
-    <table class="table table-horizontal table-bordered", id="notification_table">
-        <thead class="thead-strong">
-        <tr>
-            <th>ID</th>
-            <th>Time</th>
-            <th>Package Name</th>
-            <th>Title</th>
-            <th>content</th>
-            <th>Remove</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-        {{#notifications}}
-            <tr>
-                <td id="identifier">{{id}}</td>
-                <td>{{createdDate}}</td>
-                <td>{{reqPackage}}</a></td>
-                <td>{{title}}</td>
-                <td>{{content}}</td>
-                <td><button type="button" class="btn btn-primary btn-select">Remove</button></td>
-            </tr>
-        {{/notifications}}
-        </tbody>
-    </table>
-</div>
+    {{^notifications}}
+        <div class="card" style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;border-bottom-left-radius: 8px;width: 50%;margin-top: 2%;margin-right: 0%;margin-bottom: 0%;margin-left: 25%;border-top-left-radius: 8px;box-shadow: 0px 0px 8px 3px var(--gray);">
+            <div class="card-body">
+                <h4 class="card-title" style="color: var(--white);background: var(--blue);border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;font-size: 26px;">Notification Title</h4>
+                <h6 class="text-muted card-subtitle mb-2">Package or time information</h6>
+                <p class="card-text">Notification Contents</p><a class="card-link-not-working">Dismiss</a>
+            </div>
+        </div>
+    {{/notifications}}
 
+    {{#notifications}}
+        <div class="card" style="border-top-right-radius: 8px;border-bottom-right-radius: 8px;border-bottom-left-radius: 8px;width: 50%;margin-top: 2%;margin-right: 0%;margin-bottom: 0%;margin-left: 25%;border-top-left-radius: 8px;box-shadow: 0px 0px 8px 3px var(--gray);">
+            <div class="card-body">
+                <h4 class="card-title" style="color: var(--white);background: var(--blue);border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-top-left-radius: 5px;font-size: 26px;">{{title}}</h4>
+                <h6 class="text-muted card-subtitle mb-2">{{reqPackage}}</h6>
+                <p class="card-text">{{content}}</p><a class="card-link" role="button" id="{{id}}">Dismiss</a>
+            </div>
+        </div>
+    {{/notifications}}
+</div>
 {{>layout/footer}}
 </body>
+
 </html>
+
+<!--<!DOCTYPE HTML>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>SpringBoot Web Service</title>-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+<!--</head>-->
+<!--<body>-->
+<!--{{>layout/header}}-->
+
+<!--<h1>Notification Lists</h1>-->
+<!--<div class="col-md-12">-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-6">-->
+<!--            <button type="button" class="btn btn-primary" id="clear-all">Remove All</button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <table class="table table-horizontal table-bordered", id="notification_table">-->
+<!--        <thead class="thead-strong">-->
+<!--        <tr>-->
+<!--            <th>ID</th>-->
+<!--            <th>Time</th>-->
+<!--            <th>Package Name</th>-->
+<!--            <th>Title</th>-->
+<!--            <th>content</th>-->
+<!--            <th>Remove</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody id="tbody">-->
+<!--        {{#notifications}}-->
+<!--            <tr>-->
+<!--                <td id="identifier">{{id}}</td>-->
+<!--                <td>{{createdDate}}</td>-->
+<!--                <td>{{reqPackage}}</a></td>-->
+<!--                <td>{{title}}</td>-->
+<!--                <td>{{content}}</td>-->
+<!--                <td><button type="button" class="btn btn-primary btn-select">Remove</button></td>-->
+<!--            </tr>-->
+<!--        {{/notifications}}-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+
+<!--{{>layout/footer}}-->
+<!--</body>-->
+<!--</html>-->
