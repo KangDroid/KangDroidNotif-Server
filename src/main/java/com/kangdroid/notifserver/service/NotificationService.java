@@ -7,6 +7,7 @@ import com.kangdroid.notifserver.dto.NotificationListResponseDto;
 import com.kangdroid.notifserver.dto.NotificationResponseDTO;
 import com.kangdroid.notifserver.notify.HostNotificationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,5 +54,17 @@ public class NotificationService {
 
     public String getNotificationCount() {
         return String.valueOf(notificationRepository.findAll().size());
+    }
+
+    public boolean deleteNotification(Long id) {
+        boolean isSucceed = true;
+        try {
+            notificationRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+            System.out.println(emptyResultDataAccessException.getMessage());
+            isSucceed = false;
+        }
+
+        return isSucceed;
     }
 }

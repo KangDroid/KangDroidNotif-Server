@@ -9,7 +9,7 @@
 
 <h1>Notification Lists</h1>
 <div class="col-md-12">
-    <table class="table table-horizontal table-bordered">
+    <table class="table table-horizontal table-bordered", id="notification_table">
         <thead class="thead-strong">
         <tr>
             <th>ID</th>
@@ -17,16 +17,18 @@
             <th>Package Name</th>
             <th>Title</th>
             <th>content</th>
+            <th>Remove</th>
         </tr>
         </thead>
         <tbody id="tbody">
         {{#notifications}}
             <tr>
-                <td>{{id}}</td>
+                <td id="identifier">{{id}}</td>
                 <td>{{createdDate}}</td>
                 <td>{{reqPackage}}</a></td>
                 <td>{{title}}</td>
                 <td>{{content}}</td>
+                <td><button type="button" class="btn btn-primary btn-select">Remove</button></td>
             </tr>
         {{/notifications}}
         </tbody>
